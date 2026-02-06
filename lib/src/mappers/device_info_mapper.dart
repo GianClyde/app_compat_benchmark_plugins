@@ -19,6 +19,7 @@ class DeviceInfoMapper {
     );
   }
 
+  //not yet commited
   static double parseOsVersion(String raw) {
     // Handles: "14", "14.0", "14.0.0", "Android 14", "14 (QPR2)" etc.
     final text = raw.trim();

@@ -12,7 +12,15 @@ class FlutterDeviceInfoPlusRunner implements core.DeviceInfoRunner {
 
   @override
   Future<core.DeviceInformation> getDeviceInfo() async {
-    final pluginInfo = await _deviceInfo.getDeviceInfo();
-    return DeviceInfoMapper.toCore(pluginInfo);
+    try {
+      final pluginInfo = await _deviceInfo.getDeviceInfo();
+      // ignore: avoid_print
+      print("PLUGIN systemVersion=${pluginInfo.systemVersion}");
+      return DeviceInfoMapper.toCore(pluginInfo);
+    } catch (e, st) {
+      // ignore: avoid_print
+      print("DEVICE INFO PLUGIN FAILED: $e\n$st");
+      rethrow; // keep rethrow while debugging to see origin
+    }
   }
 }
